@@ -7,8 +7,8 @@ class Api(http.Controller):
     @http.route('/api/restful', type='http', auth='none', csrf=False)
     @serialize_exception
     def restful(self, **post):
+        filecontent = {}
         if post.get('login') and post.get('password'):
-           filecontent = {}
            if not post.get('database'): #If no database is passed on the ajax post, get one random database
               from odoo.service.db import list_dbs
               post['database'] = list_dbs()[0]
