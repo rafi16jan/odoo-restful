@@ -16,7 +16,7 @@ class Api(http.Controller):
            if not login: #If login doesn't return uid, return json with status denied
               filecontent['status'] = 'denied'
               return request.make_response(json(filecontent), [('Access-Control-Allow-Origin', '*')])
-           filecontent = request.env['res.users'].read() #If login successful, you can execute functions and access datas
+           filecontent = request.env['res.users'].search([]).read() #If login successful, you can execute functions and access datas
         if not filecontent: #If no data filled in the dict, return error
            filecontent = {'status': 'error'}
         return request.make_response(json(filecontent), [('Access-Control-Allow-Origin', '*')])
